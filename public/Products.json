@@ -1,0 +1,17 @@
+[
+    {"_id": 1,
+    "name": "Electric Drill",
+"price":199,
+"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-1-800x800.jpg",
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
+    {"_id": 2,
+    "name": "Electric Drill",
+"price":199,
+"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-1-800x800.jpg",
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
+    {"_id": 3,
+    "name": "Electric Drill",
+"price":199,
+"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-1-800x800.jpg",
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
+]
