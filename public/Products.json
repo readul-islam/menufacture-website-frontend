@@ -1,17 +1,23 @@
 [
-    {"_id": 1,
+    {
     "name": "Electric Drill",
+    "Availavle":1000,
+    "minOrder": 10,
 "price":199,
 "img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-1-800x800.jpg",
 "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
-    {"_id": 2,
-    "name": "Electric Drill",
+    {
+    "name": "Power Saw",
+    "Availavle":1000,
+    "minOrder": 20,
 "price":199,
-"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-1-800x800.jpg",
+"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-6-800x800.jpg",
 "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
-    {"_id": 3,
-    "name": "Electric Drill",
+    {
+    "name": "Safety Helmet",
+    "Availavle":1000,
+    "minOrder": 30,
 "price":199,
-"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-1-800x800.jpg",
+"img":"https://baumeister.qodeinteractive.com/wp-content/uploads/2017/11/shop-img-3-800x800.jpg",
 "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
 ]

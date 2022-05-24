@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -12,11 +12,15 @@ import toast from "react-hot-toast";
 import Loading from "../Loding/Loading";
 
 const SignUp = () => {
+  const navigate = useNavigate()
+ 
+  
   const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
   const [signInWithGoogle, geUser,gLoading, gError] = useSignInWithGoogle(auth);
-
+  
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+  useCreateUserWithEmailAndPassword(auth);
+
 
   const {
     register,
@@ -34,32 +38,34 @@ const SignUp = () => {
       }
     }
   };
-
+  if (user || geUser) {
+    navigate('/')
+    return toast.success("Sign Up Successfully", { id: 1 });
+    
+  }
   if (error || gError) {
     return toast.error("Something went wrong", { id: 1 });
   }
-  if (user || geUser) {
-    return toast.success("Sign Up Successfully", { id: 1 });
-  }
+ 
   if(loading || gLoading){
    return <Loading/>
   }
   return (
     <div className="flex justify-center pt-[10vh]">
-      <div class="card w-42 md:w-[450px] bg-base-100 shadow-xl">
-        <div  class="card-body">
+      <div className="card w-42 md:w-[450px] bg-base-100 shadow-xl">
+        <div  className="card-body">
 
           <h3 className="text-center font-bold text-xl">SIGN UP</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
-          <div class="form-control w-full  ">
-            <label class="label">
-              <span class="label-text">Name</span>
+          <div className="form-control w-full  ">
+            <label className="label">
+              <span className="label-text">Name</span>
             </label>
             <input
               {...register("name", { required: true, maxLength: 20 })}
               type="text"
               placeholder="Your Name"
-              class="input  w-full input-bordered  "
+              className="input  w-full input-bordered  "
             />
             {errors?.name && (
               <small className="text-red-600 p-1">
@@ -68,9 +74,9 @@ const SignUp = () => {
               </small>
             )}
           </div>
-          <div class="form-control w-full  ">
-            <label class="label">
-              <span class="label-text">E-Mail</span>
+          <div className="form-control w-full  ">
+            <label className="label">
+              <span className="label-text">E-Mail</span>
             </label>
             <input
               {...register("email", {
@@ -79,7 +85,7 @@ const SignUp = () => {
               })}
               type="email"
               placeholder="E-mail"
-              class="input  w-full input-bordered  "
+              className="input  w-full input-bordered  "
             />
             {errors?.email && (
               <small className="text-red-600 p-1">
@@ -88,9 +94,9 @@ const SignUp = () => {
               </small>
             )}
           </div>
-          <div class="form-control w-full ">
-            <label class="label">
-              <span class="label-text">Password</span>
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="label-text">Password</span>
             </label>
             <input
               {...register("password", {
@@ -99,7 +105,7 @@ const SignUp = () => {
               })}
               type="password"
               placeholder="password"
-              class="input  w-full input-bordered  "
+              className="input  w-full input-bordered  "
             />
             {errors?.password && (
               <small className="text-red-600 p-1">
@@ -108,9 +114,9 @@ const SignUp = () => {
               </small>
             )}
           </div>
-          <label class="cursor-pointer flex items-center pt-4">
-            <input {...register("checkbox")} type="checkbox" class="checkbox" />
-            <span class="label-text px-4">
+          <label className="cursor-pointer flex items-center pt-4">
+            <input {...register("checkbox")} type="checkbox" className="checkbox" />
+            <span className="label-text px-4">
               I agree <span className="underline text-blue-800">terms </span>and{" "}
               <span className="underline text-blue-800"> conditions </span>
             </span>
@@ -127,12 +133,12 @@ const SignUp = () => {
             </Link>{" "}
           </p>
           </form>
-          <div class="divider">OR</div>
+          <div className="divider">OR</div>
           <div onClick={()=>signInWithGoogle()} className="flex items-center justify-center px-2 border py-2 rounded-xl">
             <span className="pr-4">
               <FcGoogle size={30} />
             </span>
-            <button  class="md:text-xl uppercase font-semibold ">
+            <button  className="md:text-xl uppercase font-semibold ">
               Sign Up with Google
             </button>
           </div>
