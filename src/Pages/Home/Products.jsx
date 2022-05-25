@@ -8,7 +8,7 @@ const Products = () => {
     const dataLoad = async() => {
         const {data} = await axios.get('http://localhost:5000/products');
         setProducts(data);
-        console.log(data);
+        // console.log(data);
     }
     dataLoad()
   },[])

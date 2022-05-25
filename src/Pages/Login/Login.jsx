@@ -6,6 +6,7 @@ import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from
 import auth from '../../Firebase/Firebase.init';
 import toast from 'react-hot-toast';
 import Loading from '../Loding/Loading';
+import useHooks from '../../hooks/useHooks';
 
 
 
@@ -21,6 +22,7 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+  
     const {
         register,
         handleSubmit,
@@ -33,10 +35,17 @@ const Login = () => {
        }
          
       };
+      const {token} = useHooks( geUser || user)
+      
+      
       if(currentUser){
         navigate(from, { replace: true });
       }
+      
       if(user || geUser){
+        if(token) {
+          navigate('home')
+        }
         return toast.success("Login Successfully", { id: 1 });
       }
       if(loading || gLoading){

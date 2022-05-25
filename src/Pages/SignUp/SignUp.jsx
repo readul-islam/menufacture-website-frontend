@@ -10,6 +10,7 @@ import {
 import auth from "../../Firebase/Firebase.init";
 import toast from "react-hot-toast";
 import Loading from "../Loding/Loading";
+import useHooks from "../../hooks/useHooks";
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -38,8 +39,14 @@ const SignUp = () => {
       }
     }
   };
+  // console.log(user);
+  
+  const {token} = useHooks(user|| geUser)
+  if(token) {
+    navigate('/home')
+  }
   if (user || geUser) {
-    navigate('/')
+    
     return toast.success("Sign Up Successfully", { id: 1 });
     
   }
