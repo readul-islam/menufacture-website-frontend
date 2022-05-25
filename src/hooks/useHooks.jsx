@@ -11,8 +11,14 @@ const useHooks = (user) => {
  useEffect(() => {
     const jwtToken = async()=>{
         if(email){
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT fefege...'
+              }
            
-            const {data} = await axios.put(`http://localhost:5000/user/${email}`)
+            const {data} = await axios.put(`http://localhost:5000/user/${email}`
+               
+            )
             // console.log(data);
            try{
             const acessToken=data.token

@@ -11,7 +11,12 @@ const Payment = () => {
     console.log(id);
     useEffect(() => {
         const paymentProduct = async () => {
-          const { data } = await axios.get(`http://localhost:5000/order/${id}`);
+          const { data } = await axios.get(`http://localhost:5000/order/${id}`,{
+            headers:{
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+          });
          
           setPayProduct(data);
         

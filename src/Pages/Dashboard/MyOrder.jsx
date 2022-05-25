@@ -3,14 +3,17 @@ import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import PrimaryBtn from '../Shared/PrimaryBtn';
+
 
 const MyOrder = ({order,refetch}) => {
+  // console.log(order);
     const deleteHandler = async(id) =>{
         const confirm = window.confirm('Are you sure you want to delete')
         if(confirm){
            
-            const {data} = await axios.delete(`http://localhost:5000/order/${id}`)
+            const {data} = await axios.delete(`http://localhost:5000/order/${id}`,{
+              
+            })
           if(data){
               toast.success('Order deleted successfully')
     
@@ -27,10 +30,19 @@ const MyOrder = ({order,refetch}) => {
     <p className='text-lg font-semibold'> Total quantity: {order.quantity}</p>
     <p className='text-lg font-semibold'>Total Price: ${order.total}</p>
     <div class="card-actions flex justify-between">
+    {order.paid ? <button disabled
+    className='btn w-full text-white' >Payment compelete</button> 
+    :
+    <>
+    
     <Link to={`payment/${order._id}`}>
-    <PrimaryBtn>Pay Now</PrimaryBtn>
+    <button 
+    className='btn btn-secondary text-white'>Pay Now</button>
     </Link>
       <button onClick={()=>deleteHandler(order._id)} class="btn btn-outline">delete</button>
+    </>
+    
+    }
     </div>
   </div>
 </div>

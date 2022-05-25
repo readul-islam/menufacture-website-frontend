@@ -8,17 +8,23 @@ const CheckoutForm = ({ payProduct }) => {
   const elements = useElements();
   const [errors, setErros] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [paymentId ,setPaymentId] = useState("");
-  const { total,email } = payProduct;
-console.log(payProduct);
+  const [transactionId  ,setTransactionId ] = useState("");
+  const { total,email ,_id} = payProduct;
+// console.log(payProduct);
 
   useEffect(() => {
     const payment = async () => {
      if(total){
+       
       const { data } = await axios.post("http://localhost:5000/payment", {
         total,
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        }
       });
      if(data.clientSecret){
+       
     
       setClientSecret(data?.clientSecret)
      }
@@ -28,7 +34,7 @@ console.log(payProduct);
     };
     payment();
     
-  }, [total,paymentId]);
+  }, [total]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -71,12 +77,18 @@ console.log(payProduct);
     }
     else{
       toast.success('Congrats!, Your payment is completed',{id:1})
-      setPaymentId(paymentIntent.id)
+      setTransactionId(paymentIntent.id)
+      console.log(paymentIntent);
+     if(paymentIntent.id){
+      const {data}= await axios.patch(`http://localhost:5000/order/${_id}`,{
+        email: email, transactionId: paymentIntent.id
+      }) 
+     }
      
       setErros('')
     }
   };
-
+console.log(transactionId);
   return (
     <form onSubmit={handleSubmit}>
       <CardElement

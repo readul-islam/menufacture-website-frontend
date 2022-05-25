@@ -5,7 +5,10 @@ import MyOrder from "./MyOrder";
 const MyOrders = () => {
  
   const { isLoading, error, data:myOrders, refetch } = useQuery('order', () =>
-    fetch("http://localhost:5000/order").then((res) => res.json())
+    fetch("http://localhost:5000/order",{
+      
+      
+    }).then((res) => res.json())
   );
   if(isLoading){
       return <Loading/>
