@@ -1,11 +1,11 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/Firebase.init';
-import PrimaryBtn from '../Shared/PrimaryBtn';
+
 
 const MyProfile = () => {
     const [user] = useAuthState(auth)
-    console.log(user);
+    
     return (
         <div>
         <div className='flex flex-col items-center justify-center'>
@@ -23,8 +23,8 @@ const MyProfile = () => {
       
         </div>
        <div className='flex  justify-center mt-4'>
-       <div class="card  bg-base-100 shadow">
-  <div class="card-body ">
+       <div className="card  bg-base-100 shadow">
+  <div className="card-body ">
     
     <div className='flex items-center'>
    <p className='text-xl font-bold'>Add Profile Name</p>

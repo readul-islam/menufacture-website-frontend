@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
+import Blogs from "./Pages/Blogs/Blogs";
 import AddReview from "./Pages/Dashboard/AddReview";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyOrders from "./Pages/Dashboard/MyOrders";
@@ -50,6 +51,7 @@ function App() {
         
        </Route>
        
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       

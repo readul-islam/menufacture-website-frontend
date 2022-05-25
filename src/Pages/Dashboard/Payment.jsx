@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 
+
+
 const Payment = () => {
     const [payProduct,setPayProduct] = useState({})
     const {id} = useParams()
@@ -28,7 +30,7 @@ const Payment = () => {
 
     return (
        <div className="flex justify-center">
-        <div class="card card-compact w-96 bg-base-100 shadow-xl p-8">
+        <div className="card card-compact w-96 bg-base-100 shadow-xl p-8">
         <Elements stripe={stripePromise}>
         <CheckoutForm payProduct={payProduct} />
       </Elements>
