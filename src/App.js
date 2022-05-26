@@ -6,11 +6,13 @@ import AddProduct from "./Pages/Dashboard/AddProduct";
 import AddReview from "./Pages/Dashboard/AddReview";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
+import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import Payment from "./Pages/Dashboard/Payment";
 
 import Home from "./Pages/Home/Home";
+import ManageAllProducts from "./Pages/Home/ManageAllProducts";
 import Login from "./Pages/Login/Login";
 import NotFound from "./Pages/NotFound/NotFound";
 
@@ -45,6 +47,8 @@ function App() {
          <Route path="my-profile" element={<MyProfile/>}/>
          <Route path="make-admin" element={<MakeAdmin/>}/>
          <Route path="add-product" element={<AddProduct/>}/>
+         <Route path="manage-all-products" element={<ManageAllOrders/>}/>
+         <Route path="manage-products" element={<ManageAllProducts/>}/>
         
          <Route path="payment/:id" element={
          <Payment />

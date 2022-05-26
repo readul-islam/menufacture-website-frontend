@@ -1,16 +1,50 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+
+import { useQuery } from 'react-query';
+import Loading from '../Loding/Loading';
 
 const MakeAdmin = () => {
-    const [allUsers,setAllUsers] = useState([])
-    useEffect(() => {
-const allUser = async()=>{
-    const {data} = await axios.get('http://localhost:5000/user')
-    setAllUsers(data);
+//     const [allUsers,setAllUsers] = useState([])
+//     useEffect(() => {
+// const allUser = async()=>{
+//     const {data} = await axios.get('http://localhost:5000/user')
+//     setAllUsers(data);
 
-}
-allUser()
-    },[])
+// }
+// allUser()
+//     },[])
+const { isLoading, error, data:allUsers, refetch } = useQuery('user', () =>
+    fetch(`http://localhost:5000/user`,{
+      
+      
+    }).then((res) => res.json())
+  );
+  if(isLoading){
+    <Loading/>
+  }
+
+    const makeAdmin = async(email) =>{
+     
+     if(email){
+      const admin ={rule:'admin'}
+      const {data} = await axios.put(`http://localhost:5000/user/admin/${email}`,{admin})
+      console.log(data);
+      if(data.acknowledged){
+        toast.success(`${email} add to admin`)
+        refetch()
+      }
+     }
+
+    }
+    makeAdmin()
+
+    const removeAdmin = async(email) =>{
+      if(email){
+        const {data} = await axios.patch(`http://localhost:5000/user/admin/${email}`)
+      }
+    }
+   
     return (
         <div class="overflow-x-auto w-full">
         <table class="table w-full">
@@ -30,7 +64,7 @@ allUser()
           </thead>
           <tbody>
          
-           {allUsers.map(user => 
+           {allUsers?.map(user => 
              <tr key={user._id}>
               <th>
                 <label>
@@ -57,10 +91,12 @@ allUser()
               </td>
               <td>
               <button disabled={user?.rule}
+              onClick={()=> makeAdmin(user.email)}
                class="btn btn-secondary text-white btn-xs"> Make Admin</button>
               </td>
               <th>
-                <button disabled={user?.rule}
+                <button onClick={()=>  removeAdmin(user.email)}
+                 
                  class="btn text-white  btn-xs">Remove Admin</button>
               </th>
             </tr>)}

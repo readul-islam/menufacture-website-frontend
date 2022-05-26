@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 
 const AddProduct = () => {
     const imgStrogeKey ='6759a9eee99963e6a28bb04e2b21046c'
@@ -30,7 +31,11 @@ const AddProduct = () => {
                      headers: { 'Content-Type': 'application/json'},
                      body: JSON.stringify(product)
               }).then(res => res.json())
-              .then(data => console.log(data))
+              .then(data => {
+                if(data){
+                  toast.success('product successfully added')
+                }
+              })
            }
        })
 
