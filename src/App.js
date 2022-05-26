@@ -2,8 +2,10 @@
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 import Blogs from "./Pages/Blogs/Blogs";
+import AddProduct from "./Pages/Dashboard/AddProduct";
 import AddReview from "./Pages/Dashboard/AddReview";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import MakeAdmin from "./Pages/Dashboard/MakeAdmin";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import MyProfile from "./Pages/Dashboard/MyProfile";
 import Payment from "./Pages/Dashboard/Payment";
@@ -41,6 +43,8 @@ function App() {
          <Route path="orders" element={<MyOrders/>}/>
          <Route path="add-review" element={<AddReview/>}/>
          <Route path="my-profile" element={<MyProfile/>}/>
+         <Route path="make-admin" element={<MakeAdmin/>}/>
+         <Route path="add-product" element={<AddProduct/>}/>
         
          <Route path="payment/:id" element={
          <Payment />

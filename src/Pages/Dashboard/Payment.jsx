@@ -14,10 +14,7 @@ const Payment = () => {
     useEffect(() => {
         const paymentProduct = async () => {
           const { data } = await axios.get(`http://localhost:5000/order/${id}`,{
-            headers:{
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-            }
+           
           });
          
           setPayProduct(data);
@@ -32,7 +29,7 @@ const Payment = () => {
        <div className="flex justify-center">
         <div className="card card-compact w-96 bg-base-100 shadow-xl p-8">
         <Elements stripe={stripePromise}>
-        <CheckoutForm payProduct={payProduct} />
+        <CheckoutForm  payProduct={payProduct} />
       </Elements>
       </div>
       </div>

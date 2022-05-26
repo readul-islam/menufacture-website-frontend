@@ -10,22 +10,19 @@ const CheckoutForm = ({ payProduct }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId  ,setTransactionId ] = useState("");
   const { total,email ,_id} = payProduct;
-// console.log(payProduct);
+
 
   useEffect(() => {
     const payment = async () => {
      if(total){
        
-      const { data } = await axios.post("http://localhost:5000/payment", {
-        total,
-        headers:{
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-        }
+      const { data } = await axios.post("http://localhost:5000/payment-init", {
+        total
+        
       });
      if(data.clientSecret){
        
-    
+    console.log(data.clientSecret);
       setClientSecret(data?.clientSecret)
      }
      }
@@ -57,7 +54,7 @@ const CheckoutForm = ({ payProduct }) => {
     if (error) {
       setErros(error?.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      console.log( paymentMethod);
       setErros('')
     }
     // ----confirm payment
@@ -88,7 +85,7 @@ const CheckoutForm = ({ payProduct }) => {
       setErros('')
     }
   };
-console.log(transactionId);
+
   return (
     <form onSubmit={handleSubmit}>
       <CardElement

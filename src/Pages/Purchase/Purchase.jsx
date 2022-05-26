@@ -58,8 +58,8 @@ setQuantity(event.target.value);
   <input onChange={getQuantity} 
    
    type="text" name='quan'  className="input input-bordered w-full text-lg " />
-   {quantity <= 9 ? <small className="text-red-400">minimum quantity 10</small> : ''}
-   {quantity > selected.available ? <small className="text-red-400">not available</small> : ''}
+   {quantity < selected.quantity ? <small className="text-red-400">minimum quantity {selected.quantity}</small> : ''}
+   {quantity > selected.available ? <small className="text-red-400">not available {quantity} </small> : ''}
     <label className="text-xl font-semibold py-4">Price: <span className="font-bold">${selected.price} pp</span></label>
   
    

@@ -1,8 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import {   NavLink, Outlet } from "react-router-dom";
+import auth from "../../Firebase/Firebase.init";
 
 
 const Dashboard = () => {
+  const [user] = useAuthState(auth)
+  const email = (user.email);
+  const [adminRule,setAdminRule] = useState({})
+  useEffect(() => {
+const allUser = async()=>{
+ if(email){
+  const {data} = await axios.get(`http://localhost:5000/user/${email}`)
+  setAdminRule(data);
+  console.log(data);
+ }
+ 
+
+}
+allUser()
+  },[email])
   return (
     <div className="drawer drawer-mobile ">
   <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
@@ -20,7 +38,17 @@ const Dashboard = () => {
       <li><NavLink to='orders'>My Orders</NavLink></li>
       <li><NavLink to='my-profile'>My Profile</NavLink></li>
       <li><NavLink to='add-review'>Add Review</NavLink></li>
+      { adminRule.rule ? 
+        <>
+        <li><NavLink to='add-product'>Add Product</NavLink></li>
+      <li><NavLink to='manage-products'>Manage Products</NavLink></li>
+      <li><NavLink to='manage-all-products'>Manage All Orders</NavLink></li>
+      <li><NavLink to='make-admin'>Make Admin</NavLink></li>
     
+      </>
+        
+      : ''
+    }
       
     </ul>
   
